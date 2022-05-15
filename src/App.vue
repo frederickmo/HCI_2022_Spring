@@ -30,6 +30,9 @@ export default {
   },
 
   methods: {
+    /*
+    * init函数:模板的主要内容
+    * */
     init: function() {
       const gui = new dat.GUI()
       const world = {
@@ -60,8 +63,6 @@ export default {
       this.renderer.setSize(innerWidth, innerHeight);
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       container.appendChild(this.renderer.domElement);
-    },
-    model: function() {
 
       const boxGeometry = new Three.BoxGeometry(3, 3, 3)
       const material = new Three.MeshPhongMaterial({
@@ -95,6 +96,10 @@ export default {
       this.scene.add(light)
 
     },
+
+    /**
+     * 随界面调整布局
+     */
     autoScale: function() {
       let container = document.getElementById('container')
       window.addEventListener('resize', () =>
@@ -110,6 +115,9 @@ export default {
       })
 
     },
+    /**
+     * 旋转模型
+     */
     meshRotate: function() {
       const clock = new Three.Clock()
       const tick = () =>
@@ -121,6 +129,9 @@ export default {
       }
       tick()
     },
+    /**
+     * 鼠标控制
+     */
     traceBallControl: function() {
       const traceBallControls = new TrackballControls(this.camera, this.renderer.domElement)
       const clock = new Three.Clock()
@@ -134,6 +145,9 @@ export default {
       }
       renderScene()
     },
+    /**
+     * 运动
+     */
     animate: function() {
       requestAnimationFrame(this.animate);
       // this.mesh.rotation.x += 0.01;
@@ -147,7 +161,6 @@ export default {
 
   mounted () {
     this.init()
-    this.model()
     this.autoScale()
     // this.meshRotate()
     this.traceBallControl()
